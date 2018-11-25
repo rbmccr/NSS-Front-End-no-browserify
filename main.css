@@ -1,0 +1,15 @@
+#container-master {
+  min-height: calc(100vh - 52px); /*100vh - height of navbar*/
+  margin: 5px;
+}
+
+#field-img-container {
+  position: relative;
+  max-width: 500px !important;
+}
+
+#field-img-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
