@@ -12,13 +12,27 @@ const gameplay = {
   },
 
   buildContainers() {
+    // important classes: level, level-left, level-item
 
-    const leftItem1 = elBuilder("div", { "id": "shotControls", "class": "level-item buttons" });
-    const levelLeft1 = elBuilder("div", { "class": "level-left" }, null, leftItem1);
-    const rightItem1 = elBuilder("div", { "id": "", "class": "level-item" }, "Level right 1");
-    const levelRight1 = elBuilder("div", { "id": "shotControls", "class": "level-right" }, null, rightItem1);
-    const levelContainer1 = elBuilder("div", { "class": "level container box" }, null, levelLeft1, levelRight1);
-    webpage.appendChild(levelContainer1);
+    // new shot and save shot buttons
+    const shotButtons = elBuilder("div", { "id": "shotControls", "class": "level-item buttons" });
+    const alignShotButtons = elBuilder("div", { "class": "level-left" }, null, shotButtons);
+    const shotButtonContainer = elBuilder("div", { "class": "level" }, null, alignShotButtons);
+
+    // ball speed input and aerial checkbox
+    const ballSpeedInputTitle = elBuilder("div", {"class":"level-item"}, "Ball speed (kph):")
+    const ballSpeedInput = elBuilder("input", {"id":"ballSpeedInput", "class":"level-item input", "placeholder":"enter ball speed"})
+    const aerialCbx = elBuilder("input", {"id":"aerialInput", "class":"checkbox", "type":"checkbox"});
+    const aerialCbxLabel = elBuilder("label", {"class":"checkbox level-item"}, "Aerial", aerialCbx)
+    const shotDetails = elBuilder("div", {"class":"level-left"}, null, ballSpeedInputTitle, ballSpeedInput, aerialCbxLabel)
+    const shotDetailsContainer = elBuilder("div", { "class": "level" }, null, shotDetails);
+
+    // field and goal images
+
+    // parent container holding all shot information
+    const parentShotContainer = elBuilder("div", {"class": "container box"}, null, shotButtonContainer, shotDetailsContainer)
+
+    webpage.appendChild(parentShotContainer);
 
     // const levelLeft2 = elBuilder("div", {"id":"", "class":"level-left"});
     // const levelRight2 = elBuilder("div", {"id":"", "class":"level-right"});
@@ -59,14 +73,20 @@ const gameplay = {
     const field = document.getElementById("field");
     const goal = document.getElementById("goal");
     const gameDetails = document.getElementById("gameDetails");
+    const testColumn = document.getElementById("test-column")
 
     // new shot and save shot buttons
     const newShot = elBuilder("button", { "id": "newShot", "class": "button is-success" }, "New Shot");
     const saveShot = elBuilder("button", { "id": "saveShot", "class": "button is-success" }, "Save Shot");
-    const editGame = elBuilder("button", { "id": "editGame", "class": "button is-danger" }, "Edit Previous Game");
+    const shot1 = elBuilder("button", { "id": "editGame", "class": "button is-link", "title": "Click to edit" }, "Shot 1");
+    const shot2 = elBuilder("button", { "id": "editGame", "class": "button is-link" }, "Shot 2");
+    // const editGame = elBuilder("button", { "id": "editGame", "class": "button is-danger" }, "Edit Previous Game");
+
     shotBtns1.appendChild(newShot);
     shotBtns1.appendChild(saveShot);
-    shotBtns1.appendChild(editGame);
+    shotBtns1.appendChild(shot1);
+    shotBtns1.appendChild(shot2);
+
 
     /*
         // shot number button header
@@ -123,16 +143,3 @@ const gameplay = {
   //   </div>
 //  </div>
 // </div>
-
-/*
-    // new shot and save shot buttons
-    const newShot = elBuilder("button", {"id":"newShot", "class":"button"}, "New Shot")
-    const saveShot = elBuilder("button", {"id":"saveShot", "class":"button"}, "Save Shot")
-    const buttonContainerTop = elBuilder("div", {"class":"tile"}, null, newShot, saveShot)
-
-    // ball speed and aerial shot entry
-    const ballSpeedInput = elBuilder("input", {"id":"ballSpeedInput", "class":"input"})
-    const aerialCbx = elBuilder("input", {"id":"aerialInput", "class":"checkbox", "type":"checkbox"});
-    const aerialCbxLabel = elBuilder("label", {"class":"checkbox"}, "Aerial", aerialCbx)
-    const ballSpeed = elBuilder("div", {"class":"tile"}, null, ballSpeedInput, aerialCbxLabel)
-    */
