@@ -3,13 +3,18 @@
   margin: 5px;
 }
 
-/* #field-img-container {
+#field-img-parent {
+  max-width: 600px !important;
   position: relative;
-  max-width: 500px !important;
 }
 
-#field-img-background {
+#field-img-bg {
   position: absolute;
   left: 0;
   top: 0;
-} */
+}
+
+#field-img {
+  -webkit-clip-path: polygon(20% 0%, 81% 0%, 92% 17%, 92% 83%, 80% 100%, 19% 100%, 7% 81%, 7% 17%);
+  clip-path: polygon(20% 0%, 81% 0%, 92% 17%, 92% 83%, 80% 100%, 19% 100%, 7% 81%, 7% 17%);
+}

@@ -20,29 +20,25 @@ const gameplay = {
     const shotButtonContainer = elBuilder("div", { "class": "level" }, null, alignShotButtons);
 
     // ball speed input and aerial checkbox
-    const ballSpeedInputTitle = elBuilder("div", {"class":"level-item"}, "Ball speed (kph):")
-    const ballSpeedInput = elBuilder("input", {"id":"ballSpeedInput", "class":"level-item input", "placeholder":"enter ball speed"})
-    const aerialCbx = elBuilder("input", {"id":"aerialInput", "class":"checkbox", "type":"checkbox"});
-    const aerialCbxLabel = elBuilder("label", {"class":"checkbox level-item"}, "Aerial", aerialCbx)
-    const shotDetails = elBuilder("div", {"class":"level-left"}, null, ballSpeedInputTitle, ballSpeedInput, aerialCbxLabel)
+    const ballSpeedInputTitle = elBuilder("div", { "class": "level-item" }, "Ball speed (kph):")
+    const ballSpeedInput = elBuilder("input", { "id": "ballSpeedInput", "class": "level-item input", "placeholder": "enter ball speed" });
+    const aerialCbx = elBuilder("input", { "id": "aerialInput", "class": "checkbox", "type": "checkbox" });
+    const aerialCbxLabel = elBuilder("label", { "class": "checkbox level-item" }, "Aerial", aerialCbx)
+    const shotDetails = elBuilder("div", { "class": "level-left" }, null, ballSpeedInputTitle, ballSpeedInput, aerialCbxLabel);
     const shotDetailsContainer = elBuilder("div", { "class": "level" }, null, shotDetails);
 
     // field and goal images
+    const fieldImage = elBuilder("img", { "id": "field-img", "src": "../images/DFH_stadium_790x540_no_bg_90deg.png", "alt": "DFH Stadium", "style": "height: 100%; width: 100%; object-fit: contain" });
+    const fieldImageBackground = elBuilder("img", { "id": "field-img-bg", "src": "../images/DFH_stadium_790x540_no_bg_90deg.png", "alt": "DFH Stadium", "style": "height: 100%; width: 100%; object-fit: contain" });
+    const fieldImageParent = elBuilder("div", { "id": "field-img-parent", "class": "level-item" }, null, fieldImageBackground, fieldImage);
+    const AlignfieldImage = elBuilder("div", { "class": "level-left" }, null, fieldImageParent);
+
+    const shotCoordinatesContainer = elBuilder("div", { "class": "level" }, null, AlignfieldImage);
 
     // parent container holding all shot information
-    const parentShotContainer = elBuilder("div", {"class": "container box"}, null, shotButtonContainer, shotDetailsContainer)
+    const parentShotContainer = elBuilder("div", { "class": "container box" }, null, shotButtonContainer, shotDetailsContainer, shotCoordinatesContainer)
 
     webpage.appendChild(parentShotContainer);
-
-    // const levelLeft2 = elBuilder("div", {"id":"", "class":"level-left"});
-    // const levelRight2 = elBuilder("div", {"id":"", "class":"level-right"});
-    // const levelContainer2 = elBuilder("div", {"class":"level container box"}, null, levelLeft2, levelRight2);
-    // webpage.appendChild(levelContainer2);
-
-    // const levelLeft3 = elBuilder("div", {"id":"", "class":"level-left"});
-    // const levelRight3 = elBuilder("div", {"id":"", "class":"level-right"});
-    // const levelContainer3 = elBuilder("div", {"class":"level container box"}, null, levelLeft3, levelRight3);
-    // webpage.appendChild(levelContainer3);
 
     // // see commented HTML at bottom of this file to understand format
     // const p3child1 = elBuilder("div", { "id": "gameDetails", "class": "tile is-child box" }, "#4")
