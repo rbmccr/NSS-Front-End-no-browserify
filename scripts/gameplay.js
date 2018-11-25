@@ -27,27 +27,23 @@ const gameplay = {
     const shotDetails = elBuilder("div", { "class": "level-left" }, null, ballSpeedInputTitle, ballSpeedInput, aerialCbxLabel);
     const shotDetailsContainer = elBuilder("div", { "class": "level" }, null, shotDetails);
 
-    // field and goal images
+    // field and goal images (note field-img and goal-img are clipped)
     const fieldImage = elBuilder("img", { "id": "field-img", "src": "../images/DFH_stadium_790x540_no_bg_90deg.png", "alt": "DFH Stadium", "style": "height: 100%; width: 100%; object-fit: contain" });
     const fieldImageBackground = elBuilder("img", { "id": "field-img-bg", "src": "../images/DFH_stadium_790x540_no_bg_90deg.png", "alt": "DFH Stadium", "style": "height: 100%; width: 100%; object-fit: contain" });
-    const fieldImageParent = elBuilder("div", { "id": "field-img-parent", "class": "level-item" }, null, fieldImageBackground, fieldImage);
-    const AlignfieldImage = elBuilder("div", { "class": "level-left" }, null, fieldImageParent);
+    const fieldImageParent = elBuilder("div", { "id": "field-img-parent", "class": "" }, null, fieldImageBackground, fieldImage);
+    const alignField = elBuilder("div", { "class": "level-item" }, null, fieldImageParent);
 
-    const shotCoordinatesContainer = elBuilder("div", { "class": "level" }, null, AlignfieldImage);
+                  //TODO: clippath on goal image, add goal img background
+    const goalImage = elBuilder("img", { "id": "goal-img", "src": "../images/RL_goal_cropped_no_bg_BW.png", "alt": "DFH Stadium", "style": "height: 100%; width: 100%; object-fit: contain" });
+    const goalImageParent = elBuilder("div", { "id": "goal-img-parent", "class": "level" }, null, goalImage);
+    const alignGoal = elBuilder("div", { "class": "level-item" }, null, goalImageParent);
+
+    const shotCoordinatesContainer = elBuilder("div", { "class": "level" }, null, alignField, alignGoal);
 
     // parent container holding all shot information
     const parentShotContainer = elBuilder("div", { "class": "container box" }, null, shotButtonContainer, shotDetailsContainer, shotCoordinatesContainer)
 
     webpage.appendChild(parentShotContainer);
-
-    // // see commented HTML at bottom of this file to understand format
-    // const p3child1 = elBuilder("div", { "id": "gameDetails", "class": "tile is-child box" }, "#4")
-    // const group1_sub2 = elBuilder("div", { "class": "tile is-parent" }, null, p3child1);
-
-    // const p2child1 = elBuilder("div", { "id": "shotDetails", "class": "tile is-child box" })
-    // const p2child2 = elBuilder("div", { "id": "field", "class": "tile is-child box has-text-centered" })
-    // const p2child3 = elBuilder("div", { "id": "goal", "class": "tile is-child box" }, "#3.2")
-    // const parent2 = elBuilder("div", { "class": "tile is-parent is-vertical" }, null, p2child1, p2child2, p2child3);
 
     // const p1child1 = elBuilder("div", { "id": "shotNewSave", "class": "tile is-child box has-text-centered" })
     // const p1child2 = elBuilder("div", { "id": "shotButtons", "class": "tile is-child box has-text-centered" })
