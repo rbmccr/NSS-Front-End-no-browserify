@@ -9,8 +9,8 @@ const gameplay = {
     // const headerInfo = elBuilder("div", { "class": "notification is-info" }, "Create and save shots - then save the game record.", xButton);
     // webpage.appendChild(headerInfo);
     this.buildShotContainers();
-    this.buildGameContainers();
-    this.addContainerContent();
+    this.buildGameContent();
+    this.addshotContent();
 
   },
 
@@ -27,12 +27,15 @@ const gameplay = {
     const alignShotButtons = elBuilder("div", { "class": "level-left" }, null, shotButtons);
     const shotButtonContainer = elBuilder("div", { "class": "level" }, null, alignShotButtons);
 
-    // ball speed input and aerial checkbox
+    // ball speed input and aerial select
     const ballSpeedInputTitle = elBuilder("div", { "class": "level-item" }, "Ball speed (kph):")
     const ballSpeedInput = elBuilder("input", { "id": "ballSpeedInput", "class": "level-item input", "placeholder": "enter ball speed" });
-    const aerialCbx = elBuilder("input", { "id": "aerialInput", "class": "checkbox", "type": "checkbox" });
-    const aerialCbxLabel = elBuilder("label", { "class": "checkbox level-item" }, "Aerial", aerialCbx)
-    const shotDetails = elBuilder("div", { "class": "level-left" }, null, ballSpeedInputTitle, ballSpeedInput, aerialCbxLabel);
+    const aerialOption1 = elBuilder("option", {}, "Ground shot");
+    const aerialOption2 = elBuilder("option", {}, "Aerial shot");
+    const aerialSelect = elBuilder("select", { "id":"aerialInput", "class": "select" }, null, aerialOption1, aerialOption2);
+    const aerialSelectParent = elBuilder("div", { "id":"aerialInput", "class": "select" }, null, aerialSelect);
+    const aerialControl = elBuilder("div", { "class": "control level-item" }, null, aerialSelectParent);
+    const shotDetails = elBuilder("div", { "class": "level-left" }, null, ballSpeedInputTitle, ballSpeedInput, aerialControl);
     const shotDetailsContainer = elBuilder("div", { "class": "level" }, null, shotDetails);
 
     // field and goal images (note field-img is clipped to restrict click area coordinates in later function.
@@ -70,20 +73,24 @@ const gameplay = {
     const gameType2v2Control = elBuilder("div", { "id": "_2v2", "class": "control" }, null, gameType2v2);
     const gameType1v1 = elBuilder("div", { "id": "_1v1", "class": "button" }, "1v1");
     const gameType1v1Control = elBuilder("div", { "id": "_1v1", "class": "control" }, null, gameType1v1);
-    const gameTypeButtonContainer = elBuilder("div", { "class": "level-item field has-addons" }, null, gameType3v3Control, gameType2v2Control, gameType1v1Control);
+    const gameTypeButtonField = elBuilder("div", { "class": "field has-addons" }, null, gameType3v3Control, gameType2v2Control, gameType1v1Control);
+    const gameTypeButtonContainer = elBuilder("div", { "class": "level-item" }, null, gameTypeButtonField);
 
     // team checkboxes
     const orangeCbx = elBuilder("input", { "id": "aerialInput", "class": "checkbox", "type": "checkbox" });
     const orangeTeamLabel = elBuilder("label", { "class": "checkbox level-item" }, "Orange Team", orangeCbx)
     const blueCbx = elBuilder("input", { "id": "aerialInput", "class": "checkbox", "type": "checkbox" });
     const blueTeamLabel = elBuilder("label", { "class": "checkbox level-item" }, "Blue Team", blueCbx)
-    const teamCbxContainer = elBuilder("div", { "class": "level-item" }, null, orangeTeamLabel, blueTeamLabel);
+    const teamCbxContainer = elBuilder("div", { "class": "level-item " }, null, orangeTeamLabel, blueTeamLabel);
+
+    // score inputs
+
 
     const gameContainerTop = elBuilder("div", { "class": "level" }, null, gameTypeButtonContainer, teamCbxContainer);
 
     // ---------- middle container
 
-
+    // const
     const gameContainerBottom = elBuilder("div", { "class": "level" });
 
 
@@ -92,7 +99,7 @@ const gameplay = {
     webpage.appendChild(parentGameContainer);
   },
 
-  addContainerContent() {
+  addshotContent() {
     // this function creates and appends the user interactivity features to the containers (buttons, inputs, etc.)
 
     // new shot and save shot buttons
