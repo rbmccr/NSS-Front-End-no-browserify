@@ -33,7 +33,7 @@ const gameplay = {
     const aerialOption1 = elBuilder("option", {}, "Ground shot");
     const aerialOption2 = elBuilder("option", {}, "Aerial shot");
     const aerialSelect = elBuilder("select", { "id":"aerialInput", "class": "select" }, null, aerialOption1, aerialOption2);
-    const aerialSelectParent = elBuilder("div", { "id":"aerialInput", "class": "select" }, null, aerialSelect);
+    const aerialSelectParent = elBuilder("div", {"class": "select" }, null, aerialSelect);
     const aerialControl = elBuilder("div", { "class": "control level-item" }, null, aerialSelectParent);
     const shotDetails = elBuilder("div", { "class": "level-left" }, null, ballSpeedInputTitle, ballSpeedInput, aerialControl);
     const shotDetailsContainer = elBuilder("div", { "class": "level" }, null, shotDetails);
@@ -76,19 +76,19 @@ const gameplay = {
     const gameTypeButtonField = elBuilder("div", { "class": "field has-addons" }, null, gameType3v3Control, gameType2v2Control, gameType1v1Control);
     const gameTypeButtonContainer = elBuilder("div", { "class": "level-item" }, null, gameTypeButtonField);
 
-    // team checkboxes
-    const orangeCbx = elBuilder("input", { "id": "aerialInput", "class": "checkbox", "type": "checkbox" });
-    const orangeTeamLabel = elBuilder("label", { "class": "checkbox level-item" }, "Orange Team", orangeCbx)
-    const blueCbx = elBuilder("input", { "id": "aerialInput", "class": "checkbox", "type": "checkbox" });
-    const blueTeamLabel = elBuilder("label", { "class": "checkbox level-item" }, "Blue Team", blueCbx)
-    const teamCbxContainer = elBuilder("div", { "class": "level-item " }, null, orangeTeamLabel, blueTeamLabel);
+    // team select
+    const teamOption1 = elBuilder("option", {}, "Orange team");
+    const teamOption2 = elBuilder("option", {}, "Blue Team");
+    const teamSelect = elBuilder("select", { "id":"aerialInput", "class": "select" }, null, teamOption1, teamOption2);
+    const teamSelectParent = elBuilder("div", {"class": "select" }, null, teamSelect);
+    const teamControl = elBuilder("div", { "class": "control level-item" }, null, teamSelectParent);
 
     // score inputs
 
 
-    const gameContainerTop = elBuilder("div", { "class": "level" }, null, gameTypeButtonContainer, teamCbxContainer);
+    const gameContainerTop = elBuilder("div", { "class": "level" }, null, gameTypeButtonContainer, teamControl);
 
-    // ---------- middle container
+    // ---------- bottom container
 
     // const
     const gameContainerBottom = elBuilder("div", { "class": "level" });
