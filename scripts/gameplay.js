@@ -1,3 +1,5 @@
+let shotCounter = 0;
+let newShotEditing = false;
 
 const gameplay = {
 
@@ -10,7 +12,7 @@ const gameplay = {
     // webpage.appendChild(headerInfo);
     this.buildShotContent();
     this.buildGameContent();
-
+    this.gameplayEventManager();
   },
 
   buildShotContent() {
@@ -31,8 +33,8 @@ const gameplay = {
     // ball speed input and aerial select
     const ballSpeedInputTitle = elBuilder("div", { "class": "level-item" }, "Ball speed (kph):")
     const ballSpeedInput = elBuilder("input", { "id": "ballSpeedInput", "class": "level-item input", "placeholder": "enter ball speed" });
-    const aerialOption1 = elBuilder("option", {}, "Ground shot");
-    const aerialOption2 = elBuilder("option", {}, "Aerial shot");
+    const aerialOption1 = elBuilder("option", {}, "Standard");
+    const aerialOption2 = elBuilder("option", {}, "Aerial");
     const aerialSelect = elBuilder("select", { "id": "aerialInput", "class": "select" }, null, aerialOption1, aerialOption2);
     const aerialSelectParent = elBuilder("div", { "class": "select" }, null, aerialSelect);
     const aerialControl = elBuilder("div", { "class": "control level-item" }, null, aerialSelectParent);
@@ -98,31 +100,89 @@ const gameplay = {
     const overtimeSelectParent = elBuilder("div", { "class": "select" }, null, overtimeSelect);
     const overtimeControl = elBuilder("div", { "class": "control level-item" }, null, overtimeSelectParent);
 
-    const gameContainerTop = elBuilder("div", { "class": "level" }, null, gameTypeButtonContainer, modeControl, teamControl, overtimeControl);
-
     // ---------- bottom container
 
     // score inputs
     // ****Note inline styling of input widths
-    const orangeScoreInputTitle = elBuilder("div", { "class": "level-item" }, "Orange team score:")
+    const orangeScoreInputTitle = elBuilder("div", { "class": "level-item" }, "Orange team score:");
     const orangeScoreInput = elBuilder("input", { "id": "orangeScoreInput", "class": "input", "type": "number", "placeholder": "enter orange team score" });
     const orangeScoreControl = elBuilder("div", { "class": "level-item control" }, null, orangeScoreInput);
     const blueScoreInputTitle = elBuilder("div", { "class": "level-item" }, "Blue team score:")
     const blueScoreInput = elBuilder("input", { "id": "blueScoreInput", "class": "input", "type": "number", "placeholder": "enter blue team score" });
     const blueScoreControl = elBuilder("div", { "class": "level-item control" }, null, blueScoreInput);
-    const scoreInputContainer = elBuilder("div", { "class": "level-left" }, null, orangeScoreInputTitle, orangeScoreControl, blueScoreInputTitle, blueScoreControl)
+    const scoreInputContainer = elBuilder("div", { "class": "level-left" }, null, orangeScoreInputTitle, orangeScoreControl, blueScoreInputTitle, blueScoreControl);
 
     // edit/save game buttons
-    const editPreviousGame = elBuilder("button", { "id": "editPreviousGame", "class": "button is-danger" }, "Edit Previous Game");
+    const editPreviousGame = elBuilder("button", { "id": "editPrevGame", "class": "button is-danger" }, "Edit Previous Game");
     const saveGame = elBuilder("button", { "id": "saveGame", "class": "button is-success" }, "Save Game");
     const gameButtonAlignment = elBuilder("div", { "class": "buttons level-item" }, null, editPreviousGame, saveGame);
     const gameButtonContainer = elBuilder("div", { "class": "level-right" }, null, gameButtonAlignment);
 
+    // append to webpage
+    const gameContainerTop = elBuilder("div", { "class": "level" }, null, gameTypeButtonContainer, modeControl, teamControl, overtimeControl);
     const gameContainerBottom = elBuilder("div", { "class": "level" }, null, scoreInputContainer, gameButtonContainer);
-
-    const parentGameContainer = elBuilder("div", { "class": "container box" }, null, titleContainer, gameContainerTop, gameContainerBottom)
-
+    const parentGameContainer = elBuilder("div", { "class": "container box" }, null, titleContainer, gameContainerTop, gameContainerBottom);
     webpage.appendChild(parentGameContainer);
+  },
+
+  gameplayEventManager() {
+
+    // buttons
+    const btn_newShot = document.getElementById("newShot");
+    const btn_saveShot = document.getElementById("saveShot");
+    const btn_cancelShot = document.getElementById("cancelShot");
+    const btn_editPrevGame = document.getElementById("editPrevGame");
+    const btn_saveGame = document.getElementById("saveGame");
+    const btn_3v3 = document.getElementById("_3v3");
+    const btn_2v2 = document.getElementById("_2v2");
+    const btn_1v1 = document.getElementById("_1v1");
+
+    // select dropdowns
+    const sel_aerial = document.getElementById("aerialInput");
+    const sel_gameMode = document.getElementById("gameModeInput");
+    const sel_teamColor = document.getElementById("teamInput");
+    const sel_overtime = document.getElementById("overtimeInput");
+
+    // input fields
+    const inpt_ballSpeed = document.getElementById("ballSpeedInput");
+    const inpt_orangeScore = document.getElementById("orangeScoreInput");
+    const inpt_blueScore = document.getElementById("blueScoreInput");
+
+    // add listeners
+    btn_newShot.addEventListener("click", this.createNewShot);
+    btn_saveShot.addEventListener("click", this.saveShot);
+    btn_cancelShot.addEventListener("click", this.cancelshot);
+
+  },
+
+  createNewShot() {
+    console.log("new shot")
+    // establish editing mode variable true
+    // disable functionality of new shot btn if edit var = true
+    // activate click functionality and conditional statements on both field and goal images
+  },
+
+  cancelShot() {
+    const inpt_ballSpeed = document.getElementById("ballSpeedInput");
+    const sel_aerial = document.getElementById("aerialInput");
+    // reset editing mode var to false
+    // clear clicked items in field and goal images
+    inpt_ballSpeed.value = null;
+    sel_aerial.value = "Standard";
+  },
+
+  saveShot() {
+    const inpt_ballSpeed = document.getElementById("ballSpeedInput");
+    const sel_aerial = document.getElementById("aerialInput");
+    const shotBtnContainer = document.getElementById("shotControls");
+
+    shotCounter++;
+
+
+    const newShotBtn = elBuilder("button", {"id":`shot${shotCounter}`, "class":"button is-link"}, `Shot ${shotCounter}`)
+    shotBtnContainer.appendChild(newShotBtn);
+    inpt_ballSpeed.value = null;
+    sel_aerial.value = "Standard";
   }
 
 }
