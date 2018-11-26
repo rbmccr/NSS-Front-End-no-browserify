@@ -5,3 +5,4 @@ function closeBox(e) {
 }
 
 navbar.generateNavbar(true)
+gameplay.loadGameplay()
